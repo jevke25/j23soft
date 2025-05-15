@@ -10,39 +10,42 @@ import {
   FaGlobeAmericas,
   FaGlobeEurope,
   FaRegMoon,
-  FaRegSun
+  FaRegSun,
+  FaMagic,
+  FaPalette,
+  FaBolt
 } from "react-icons/fa";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import "./App.css";
 
-// Animative marketing messages (will animate on scroll)
-const marketingMessages = {
-  sr: [
-    "Od ideje do lansiranja – sve na jednom mestu.",
-    "Vaša aplikacija. Vaš brend. Naša tehnologija.",
-    "Vi birate funkcije i boje, mi pišemo kod.",
-    "Savremena rešenja za moderan biznis.",
-    "Digitalizujte svoj rad i iznenadite klijente."
-  ],
-  en: [
-    "From idea to launch – all in one place.",
-    "Your app. Your brand. Our technology.",
-    "You choose features and colors, we write the code.",
-    "Modern solutions for a modern business.",
-    "Digitize your work and amaze your clients."
-  ]
-};
+// Marketing carousel items
+const marketingItems = [
+  {
+    icon: <FaMagic />,
+    sr: "Vaše ideje pretvaramo u digitalnu magiju.",
+    en: "We turn your ideas into digital magic."
+  },
+  {
+    icon: <FaPalette />,
+    sr: "Dizajn, funkcije i boje po vašoj želji.",
+    en: "Design, features and colors your way."
+  },
+  {
+    icon: <FaBolt />,
+    sr: "Brze, pouzdane i dostupne aplikacije.",
+    en: "Fast, reliable and accessible apps."
+  }
+];
 
-// Showcase data
+// Showcase data (2 projects)
 const showcases = [
   {
     title: "TrainerPro",
     image: "/works/trainerpro.png",
     url: "https://trainerpro-j23soft.vercel.app",
     description: {
-      sr: "Personalizovana platforma za trenere sa naprednim Gym Management sistemom.",
-      en: "A personalized platform for trainers, featuring an advanced Gym Management System."
+      sr: "Platforma za trenere sa naprednim Gym Management sistemom.",
+      en: "Trainer platform with advanced Gym Management system."
     }
   },
   {
@@ -50,8 +53,8 @@ const showcases = [
     image: "/works/fitconnect.png",
     url: "https://fitconnect-j23soft.vercel.app",
     description: {
-      sr: "Jednostavna aplikacija za vođenje klijenata, planova i napredovanja.",
-      en: "Simple client, plan, and progress management for personal trainers."
+      sr: "Aplikacija za vođenje klijenata, planova i napredovanja.",
+      en: "App for managing clients, plans and progress."
     }
   }
 ];
@@ -62,13 +65,15 @@ const text = {
     nav: ["O nama", "Radovi", "Kontakt"],
     heroTitle: (
       <>
-        <span className="highlight">Savremene web aplikacije</span> <br /> po vašoj meri
+        <span className="highlight">Custom web aplikacije</span> <br />
+        za tvoj brend i tvoj stil
       </>
     ),
     heroDesc: (
       <>
-        Kreiramo potpuno custom web aplikacije prema vašoj viziji i brendu. <br />
-        Birate dizajn, funkcionalnosti, boje i logo – mi brinemo o svemu ostalom.
+        Pravimo aplikacije po tvojim željama. <br />
+        Dizajn, boje i funkcionalnosti koje ti biraš. <br />
+        Tvoj logo, tvoja pravila, naš kod.
       </>
     ),
     heroBtn: (
@@ -100,8 +105,9 @@ const text = {
     ),
     aboutDesc: (
       <>
-        <b>Iskustvo, inovacija, posvećenost.</b> <br />
-        Svakom projektu pristupamo sa pažnjom i željom da vaše ideje pretvorimo u digitalnu realnost. Vi zamišljate – mi ostvarujemo.
+        <b>Iskustvo, inovacija i posvećenost.</b> <br />
+        Pravimo aplikacije koje rastu sa tvojim poslom. <br />
+        Ti biraš svaki detalj, a mi brinemo da sve radi savršeno.
       </>
     ),
     showcaseTitle: "Naši radovi",
@@ -109,8 +115,8 @@ const text = {
     contactTitle: "Kontakt",
     contactDesc: (
       <>
-        Imate ideju ili pitanje? <br />
-        Pišite na <a href="mailto:info@j23soft.com">info@j23soft.com</a> ili nas zapratite:
+        Imaš ideju ili pitanje? <br />
+        Piši na <a href="mailto:info@j23soft.com">info@j23soft.com</a> ili nas zapratite:
       </>
     ),
     copyright: () => `© ${new Date().getFullYear()} j23soft. Sva prava zadržana.`,
@@ -124,13 +130,15 @@ const text = {
     nav: ["About", "Portfolio", "Contact"],
     heroTitle: (
       <>
-        <span className="highlight">Modern web apps</span> <br /> tailored for you
+        <span className="highlight">Custom web apps</span> <br />
+        for your brand & style
       </>
     ),
     heroDesc: (
       <>
-        We create fully custom web applications matching your vision and brand. <br />
-        You pick the design, features, colors, and logo – we take care of the rest.
+        We build apps your way. <br />
+        Pick the design, colors and features. <br />
+        Your logo, your rules, our code.
       </>
     ),
     heroBtn: (
@@ -163,7 +171,8 @@ const text = {
     aboutDesc: (
       <>
         <b>Experience, innovation, dedication.</b> <br />
-        We approach every project with care, turning your ideas into digital reality. You imagine – we deliver.
+        We build apps that grow with you. <br />
+        You choose every detail, we make it run perfectly.
       </>
     ),
     showcaseTitle: "Our portfolio",
@@ -183,33 +192,29 @@ const text = {
   }
 };
 
-// Animated marketing section on scroll
-function AnimatedMarketing({ messages }: { messages: string[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.2 });
-  const controls = useAnimation();
-
-  React.useEffect(() => {
-    if (inView) controls.start("visible");
-  }, [inView, controls]);
-
+function MarketingCarousel({ lang }: { lang: "sr" | "en" }) {
+  // infinite horizontal scroll animation
   return (
-    <div className="marketing-anim" ref={ref}>
-      {messages.map((msg, i) => (
-        <motion.div
-          className="marketing-anim-item"
-          key={msg}
-          initial="hidden"
-          animate={controls}
-          variants={{
-            visible: { opacity: 1, y: 0 },
-            hidden: { opacity: 0, y: 40 }
-          }}
-          transition={{ duration: 0.6, delay: i * 0.08, type: "spring" }}
-        >
-          <span>{msg}</span>
-        </motion.div>
-      ))}
+    <div className="carousel-marketing">
+      <motion.div
+        className="carousel-track"
+        animate={{
+          x: ["0%", "-100%", "0%"]
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 22,
+          ease: "linear"
+        }}
+        style={{ display: "flex" }}
+      >
+        {[...marketingItems, ...marketingItems].map((item, i) => (
+          <div className="carousel-item" key={i}>
+            <span className="carousel-icon">{item.icon}</span>
+            <span className="carousel-text">{item[lang]}</span>
+          </div>
+        ))}
+      </motion.div>
     </div>
   );
 }
@@ -218,7 +223,6 @@ function App() {
   const [dark, setDark] = useState(true);
   const [lang, setLang] = useState<"sr" | "en">("sr");
 
-  // Ikone za jezik i svetlo/tamno
   const langIcon = lang === "sr" ? <FaGlobeAmericas /> : <FaGlobeEurope />;
   const themeIcon = dark ? <FaRegSun /> : <FaRegMoon />;
 
@@ -245,8 +249,8 @@ function App() {
 
       {/* Header */}
       <header className="navbar glass">
-        <div className="logo-placeholder">
-          {/* LOGO PATH: Place your logo image as public/logo.png */}
+        {/* LOGO: add your logo as public/logo.png (500x500, transparent bg recommended) */}
+        <div className="logo-circle">
           <img src="/logo.png" alt="j23soft logo" className="logo-img" />
         </div>
         <nav>
@@ -291,10 +295,8 @@ function App() {
         >
           {text[lang].heroBtn}
         </motion.a>
+        <MarketingCarousel lang={lang} />
       </motion.section>
-
-      {/* Animated Marketing Section */}
-      <AnimatedMarketing messages={marketingMessages[lang]} />
 
       {/* Features Section */}
       <section className="features">
@@ -345,7 +347,6 @@ function App() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.13 }}
             >
-              {/* IMAGE PATH: Place your images as public/works/trainerpro.png and public/works/fitconnect.png */}
               <img src={app.image} alt={app.title} />
               <div className="showcase-info">
                 <h3>{app.title}</h3>
