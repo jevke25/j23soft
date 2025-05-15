@@ -7,37 +7,37 @@ import {
   FaMobileAlt,
   FaCloud,
   FaRocket,
+  FaPalette,
+  FaBolt,
+  FaMagic,
   FaGlobeAmericas,
   FaGlobeEurope,
   FaRegMoon,
-  FaRegSun,
-  FaMagic,
-  FaPalette,
-  FaBolt
+  FaRegSun
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import "./App.css";
 
-// Marketing carousel items
-const marketingItems = [
+// Marketing highlights
+const marketing = [
   {
     icon: <FaMagic />,
-    sr: "Ideje postaju digitalna stvarnost.",
-    en: "Ideas become digital reality."
+    sr: "Digitalna magija za vaše poslovanje.",
+    en: "Digital magic for your business."
   },
   {
     icon: <FaPalette />,
-    sr: "Vaš dizajn, vaša paleta, vaša aplikacija.",
-    en: "Your design, your palette, your app."
+    sr: "Vaš identitet, vaše boje, vaš stil.",
+    en: "Your identity, your colors, your style."
   },
   {
     icon: <FaBolt />,
-    sr: "Performanse na svim uređajima.",
-    en: "Performance on every device."
+    sr: "Brza, moderna i prilagodljiva rešenja.",
+    en: "Fast, modern, and adaptable solutions."
   }
 ];
 
-// Showcase data (2 projects)
+// Showcase data (screenshots should be portrait, eg. 400x800 or 360x780)
 const showcases = [
   {
     title: "TrainerPro",
@@ -61,18 +61,18 @@ const showcases = [
 
 const text = {
   sr: {
-    brand: "j23soft",
     nav: ["O nama", "Radovi", "Kontakt"],
     heroTitle: (
       <>
-        <span className="highlight">Savremene aplikacije</span>
-        <br /> po vašoj meri
+        <span className="highlight">Web aplikacije</span> <br />
+        koje prate vaš ritam
       </>
     ),
     heroDesc: (
       <>
-        Pravimo kompleksne, brze i fluidne aplikacije koje odražavaju vašu viziju. <br />
-        Bez šablona – svaki projekat je autentičan i optimizovan za svaku platformu.
+        Kompleksni, moderni i brzi sistemi, <b>po vašoj meri</b>.<br />
+        Vaš logo, vaš brend, vaše funkcionalnosti.<br />
+        Potpuno prilagodljive aplikacije, optimizovane za svaki uređaj.
       </>
     ),
     heroBtn: (
@@ -83,18 +83,18 @@ const text = {
     features: [
       {
         icon: <FaLaptopCode />,
-        title: "Potpuno custom kod",
-        desc: "Svaka linija koda piše se prema vašim potrebama."
+        title: "Potpuni custom development",
+        desc: "Svaki piksel i svaki red koda radi za vas."
       },
       {
         icon: <FaMobileAlt />,
-        title: "Mobilni & desktop UX",
-        desc: "Dizajniran za fluidan rad na svim ekranima, bez kompromisa."
+        title: "Mobile first dizajn",
+        desc: "Savršeno iskustvo na telefonu, tabletu i računaru."
       },
       {
         icon: <FaCloud />,
-        title: "Cloud deploy & skalabilnost",
-        desc: "Aplikacija radi najsigurnije i najbrže na globalnim servisima."
+        title: "Cloud hosting & brzina",
+        desc: "Aplikacije su dostupne 24/7, skalabilne i brze."
       }
     ],
     aboutTitle: (
@@ -104,17 +104,17 @@ const text = {
     ),
     aboutDesc: (
       <>
-        <b>Vi sanjate, mi pravimo.</b> <br />
-        Kombinujemo iskustvo i inovaciju za digitalna rešenja koja rastu sa vama.<br />
-        Svaki detalj, animacija i funkcionalnost – pod vašom kontrolom.
+        <b>Vi sanjate - mi pretvaramo u realnost.</b> <br />
+        Naš pristup kombinuje iskustvo, dizajn i inovacije.<br />
+        Svaki projekat posmatramo kao digitalno umetničko delo, a vaše zadovoljstvo nam je na prvom mestu.
       </>
     ),
     showcaseTitle: "Naši radovi",
-    showcaseHint: "* Kliknite na slike za live demo aplikacija.",
+    showcaseHint: "* Klikni na slike za live demo.",
     contactTitle: "Kontakt",
     contactDesc: (
       <>
-        Imate ideju ili pitanje? <br />
+        Imate ideju ili pitanje?<br />
         Pišite na <a href="mailto:info@j23soft.com">info@j23soft.com</a> ili nas zapratite:
       </>
     ),
@@ -125,18 +125,18 @@ const text = {
     whatsapp: "WhatsApp"
   },
   en: {
-    brand: "j23soft",
     nav: ["About", "Portfolio", "Contact"],
     heroTitle: (
       <>
-        <span className="highlight">Modern apps</span>
-        <br /> tailored for you
+        <span className="highlight">Web apps</span> <br />
+        that follow your rhythm
       </>
     ),
     heroDesc: (
       <>
-        We build complex, fast & fluid apps reflecting your vision. <br />
-        No templates – every project is authentic and optimized for every platform.
+        Complex, modern and fast systems, <b>tailored to you</b>.<br />
+        Your logo, your brand, your features.<br />
+        Fully responsive, optimized for every device.
       </>
     ),
     heroBtn: (
@@ -147,18 +147,18 @@ const text = {
     features: [
       {
         icon: <FaLaptopCode />,
-        title: "Fully custom code",
-        desc: "Every line of code is crafted for your business needs."
+        title: "Full custom development",
+        desc: "Every pixel and every line of code works for you."
       },
       {
         icon: <FaMobileAlt />,
-        title: "Mobile & desktop UX",
-        desc: "Designed for flawless experience on any device."
+        title: "Mobile first design",
+        desc: "Perfect experience on mobile, tablet & desktop."
       },
       {
         icon: <FaCloud />,
-        title: "Cloud deploy & scalability",
-        desc: "Your app runs fast and secure on global platforms."
+        title: "Cloud hosting & speed",
+        desc: "Apps are online 24/7, scalable and fast."
       }
     ],
     aboutTitle: (
@@ -168,17 +168,17 @@ const text = {
     ),
     aboutDesc: (
       <>
-        <b>You dream, we build.</b> <br />
-        We blend experience and innovation for digital solutions that grow with you.<br />
-        Every detail, animation, and feature – under your control.
+        <b>You dream it - we build it.</b> <br />
+        Our approach blends experience, design and innovation.<br />
+        Every project is a digital artwork and your satisfaction is our top priority.
       </>
     ),
     showcaseTitle: "Our portfolio",
-    showcaseHint: "* Click images for a live demo.",
+    showcaseHint: "* Click the images for a live demo.",
     contactTitle: "Contact",
     contactDesc: (
       <>
-        Got an idea or question? <br />
+        Got an idea or question?<br />
         Email <a href="mailto:info@j23soft.com">info@j23soft.com</a> or follow us:
       </>
     ),
@@ -200,12 +200,12 @@ function MarketingCarousel({ lang }: { lang: "sr" | "en" }) {
         }}
         transition={{
           repeat: Infinity,
-          duration: 24,
+          duration: 20,
           ease: "linear"
         }}
         style={{ display: "flex" }}
       >
-        {[...marketingItems, ...marketingItems].map((item, i) => (
+        {[...marketing, ...marketing].map((item, i) => (
           <div className="carousel-item" key={i}>
             <span className="carousel-icon">{item.icon}</span>
             <span className="carousel-text">{item[lang]}</span>
@@ -216,7 +216,7 @@ function MarketingCarousel({ lang }: { lang: "sr" | "en" }) {
   );
 }
 
-function App() {
+export default function App() {
   const [dark, setDark] = useState(true);
   const [lang, setLang] = useState<"sr" | "en">("sr");
   const langIcon = lang === "sr" ? <FaGlobeAmericas /> : <FaGlobeEurope />;
@@ -245,9 +245,9 @@ function App() {
 
       {/* Header */}
       <header className="navbar glass">
-        {/* LOGO: add your logo as public/logo.png (any ratio, transparent recommended) */}
-        <div className="logo-free">
-          <img src="/logo.png" alt="j23soft logo" className="logo-img" />
+        {/* LOGO: add your logo as public/logo.png (any shape/ratio, transparent recommended) */}
+        <div className="logo-fluid">
+          <img src="/logo.png" alt="j23soft logo" className="logo-img" draggable="false" />
         </div>
         <nav>
           <a href="#about">{text[lang].nav[0]}</a>
@@ -277,9 +277,9 @@ function App() {
       {/* Hero Section */}
       <motion.section
         className="hero"
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.9 }}
       >
         <h1>{text[lang].heroTitle}</h1>
         <p>{text[lang].heroDesc}</p>
@@ -300,7 +300,7 @@ function App() {
           <motion.div
             className="feature-card glass"
             key={f.title as string}
-            whileHover={{ scale: 1.06, boxShadow: "0 6px 32px #38bdf855" }}
+            whileHover={{ scale: 1.06, boxShadow: "0 8px 38px #38bdf855" }}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -329,7 +329,7 @@ function App() {
       {/* Projects Showcase */}
       <section id="projects" className="showcase">
         <h2>{text[lang].showcaseTitle}</h2>
-        <div className="showcase-grid complex">
+        <div className="showcase-grid">
           {showcases.map((app, idx) => (
             <motion.a
               key={app.title}
@@ -337,14 +337,14 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               className="showcase-item glass"
-              whileHover={{ scale: 1.03, boxShadow: "0 8px 38px #38bdf899" }}
+              whileHover={{ scale: 1.04, boxShadow: "0 8px 44px #38bdf899" }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: idx * 0.16 }}
+              transition={{ duration: 0.7, delay: idx * 0.15 }}
             >
               <div className="showcase-image-wrap">
-                <img src={app.image} alt={app.title} className="showcase-img-phone" />
+                <img src={app.image} alt={app.title} className="showcase-img-portrait" />
               </div>
               <div className="showcase-info">
                 <h3>{app.title}</h3>
@@ -408,5 +408,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
