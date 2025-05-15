@@ -22,18 +22,18 @@ import "./App.css";
 const marketingItems = [
   {
     icon: <FaMagic />,
-    sr: "Vaše ideje pretvaramo u digitalnu magiju.",
-    en: "We turn your ideas into digital magic."
+    sr: "Ideje postaju digitalna stvarnost.",
+    en: "Ideas become digital reality."
   },
   {
     icon: <FaPalette />,
-    sr: "Dizajn, funkcije i boje po vašoj želji.",
-    en: "Design, features and colors your way."
+    sr: "Vaš dizajn, vaša paleta, vaša aplikacija.",
+    en: "Your design, your palette, your app."
   },
   {
     icon: <FaBolt />,
-    sr: "Brze, pouzdane i dostupne aplikacije.",
-    en: "Fast, reliable and accessible apps."
+    sr: "Performanse na svim uređajima.",
+    en: "Performance on every device."
   }
 ];
 
@@ -65,15 +65,14 @@ const text = {
     nav: ["O nama", "Radovi", "Kontakt"],
     heroTitle: (
       <>
-        <span className="highlight">Custom web aplikacije</span> <br />
-        za tvoj brend i tvoj stil
+        <span className="highlight">Savremene aplikacije</span>
+        <br /> po vašoj meri
       </>
     ),
     heroDesc: (
       <>
-        Pravimo aplikacije po tvojim željama. <br />
-        Dizajn, boje i funkcionalnosti koje ti biraš. <br />
-        Tvoj logo, tvoja pravila, naš kod.
+        Pravimo kompleksne, brze i fluidne aplikacije koje odražavaju vašu viziju. <br />
+        Bez šablona – svaki projekat je autentičan i optimizovan za svaku platformu.
       </>
     ),
     heroBtn: (
@@ -84,18 +83,18 @@ const text = {
     features: [
       {
         icon: <FaLaptopCode />,
-        title: "Custom development",
-        desc: "Svaka aplikacija je unikat, od dizajna do zadnje funkcije."
+        title: "Potpuno custom kod",
+        desc: "Svaka linija koda piše se prema vašim potrebama."
       },
       {
         icon: <FaMobileAlt />,
-        title: "Responsive dizajn",
-        desc: "Izgled i funkcionalnost savršeni na svim uređajima."
+        title: "Mobilni & desktop UX",
+        desc: "Dizajniran za fluidan rad na svim ekranima, bez kompromisa."
       },
       {
         icon: <FaCloud />,
-        title: "Cloud deploy & sigurnost",
-        desc: "Vaša aplikacija je uvek online, brza i zaštićena."
+        title: "Cloud deploy & skalabilnost",
+        desc: "Aplikacija radi najsigurnije i najbrže na globalnim servisima."
       }
     ],
     aboutTitle: (
@@ -105,9 +104,9 @@ const text = {
     ),
     aboutDesc: (
       <>
-        <b>Iskustvo, inovacija i posvećenost.</b> <br />
-        Pravimo aplikacije koje rastu sa tvojim poslom. <br />
-        Ti biraš svaki detalj, a mi brinemo da sve radi savršeno.
+        <b>Vi sanjate, mi pravimo.</b> <br />
+        Kombinujemo iskustvo i inovaciju za digitalna rešenja koja rastu sa vama.<br />
+        Svaki detalj, animacija i funkcionalnost – pod vašom kontrolom.
       </>
     ),
     showcaseTitle: "Naši radovi",
@@ -115,8 +114,8 @@ const text = {
     contactTitle: "Kontakt",
     contactDesc: (
       <>
-        Imaš ideju ili pitanje? <br />
-        Piši na <a href="mailto:info@j23soft.com">info@j23soft.com</a> ili nas zapratite:
+        Imate ideju ili pitanje? <br />
+        Pišite na <a href="mailto:info@j23soft.com">info@j23soft.com</a> ili nas zapratite:
       </>
     ),
     copyright: () => `© ${new Date().getFullYear()} j23soft. Sva prava zadržana.`,
@@ -130,15 +129,14 @@ const text = {
     nav: ["About", "Portfolio", "Contact"],
     heroTitle: (
       <>
-        <span className="highlight">Custom web apps</span> <br />
-        for your brand & style
+        <span className="highlight">Modern apps</span>
+        <br /> tailored for you
       </>
     ),
     heroDesc: (
       <>
-        We build apps your way. <br />
-        Pick the design, colors and features. <br />
-        Your logo, your rules, our code.
+        We build complex, fast & fluid apps reflecting your vision. <br />
+        No templates – every project is authentic and optimized for every platform.
       </>
     ),
     heroBtn: (
@@ -149,18 +147,18 @@ const text = {
     features: [
       {
         icon: <FaLaptopCode />,
-        title: "Custom development",
-        desc: "Every app is unique, from design to the last feature."
+        title: "Fully custom code",
+        desc: "Every line of code is crafted for your business needs."
       },
       {
         icon: <FaMobileAlt />,
-        title: "Responsive design",
-        desc: "Perfect look and functionality on all devices."
+        title: "Mobile & desktop UX",
+        desc: "Designed for flawless experience on any device."
       },
       {
         icon: <FaCloud />,
-        title: "Cloud deploy & security",
-        desc: "Your app is always online, fast, and secure."
+        title: "Cloud deploy & scalability",
+        desc: "Your app runs fast and secure on global platforms."
       }
     ],
     aboutTitle: (
@@ -170,9 +168,9 @@ const text = {
     ),
     aboutDesc: (
       <>
-        <b>Experience, innovation, dedication.</b> <br />
-        We build apps that grow with you. <br />
-        You choose every detail, we make it run perfectly.
+        <b>You dream, we build.</b> <br />
+        We blend experience and innovation for digital solutions that grow with you.<br />
+        Every detail, animation, and feature – under your control.
       </>
     ),
     showcaseTitle: "Our portfolio",
@@ -193,17 +191,16 @@ const text = {
 };
 
 function MarketingCarousel({ lang }: { lang: "sr" | "en" }) {
-  // infinite horizontal scroll animation
   return (
     <div className="carousel-marketing">
       <motion.div
         className="carousel-track"
         animate={{
-          x: ["0%", "-100%", "0%"]
+          x: ["0%", "-50%", "0%"]
         }}
         transition={{
           repeat: Infinity,
-          duration: 22,
+          duration: 24,
           ease: "linear"
         }}
         style={{ display: "flex" }}
@@ -222,7 +219,6 @@ function MarketingCarousel({ lang }: { lang: "sr" | "en" }) {
 function App() {
   const [dark, setDark] = useState(true);
   const [lang, setLang] = useState<"sr" | "en">("sr");
-
   const langIcon = lang === "sr" ? <FaGlobeAmericas /> : <FaGlobeEurope />;
   const themeIcon = dark ? <FaRegSun /> : <FaRegMoon />;
 
@@ -249,8 +245,8 @@ function App() {
 
       {/* Header */}
       <header className="navbar glass">
-        {/* LOGO: add your logo as public/logo.png (500x500, transparent bg recommended) */}
-        <div className="logo-circle">
+        {/* LOGO: add your logo as public/logo.png (any ratio, transparent recommended) */}
+        <div className="logo-free">
           <img src="/logo.png" alt="j23soft logo" className="logo-img" />
         </div>
         <nav>
@@ -333,7 +329,7 @@ function App() {
       {/* Projects Showcase */}
       <section id="projects" className="showcase">
         <h2>{text[lang].showcaseTitle}</h2>
-        <div className="showcase-grid">
+        <div className="showcase-grid complex">
           {showcases.map((app, idx) => (
             <motion.a
               key={app.title}
@@ -341,13 +337,15 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               className="showcase-item glass"
-              whileHover={{ scale: 1.05, boxShadow: "0 4px 32px #38bdf855" }}
+              whileHover={{ scale: 1.03, boxShadow: "0 8px 38px #38bdf899" }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.13 }}
+              transition={{ duration: 0.7, delay: idx * 0.16 }}
             >
-              <img src={app.image} alt={app.title} />
+              <div className="showcase-image-wrap">
+                <img src={app.image} alt={app.title} className="showcase-img-phone" />
+              </div>
               <div className="showcase-info">
                 <h3>{app.title}</h3>
                 <p>
@@ -360,7 +358,7 @@ function App() {
         <div className="showcase-hint">{text[lang].showcaseHint}</div>
       </section>
 
-      {/* Elegant Contact & Footer */}
+      {/* Contact & Footer */}
       <footer id="contact" className="footer glass">
         <motion.div
           className="contact-card-elegant"

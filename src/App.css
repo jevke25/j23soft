@@ -115,29 +115,26 @@ html,
   z-index: 2;
   flex-wrap: wrap;
 }
-.logo-circle {
-  background: none;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+.logo-free {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
-  position: relative;
-  box-shadow: 0 0 0 transparent;
-  /* No background, so logo "floats" and picks up app bg */
+  height: 64px;
+  width: 64px;
+  background: none;
+  border-radius: 16px;
+  box-shadow: none;
 }
 .logo-img {
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
-  border-radius: 50%;
-  background: transparent;
+  background: none;
+  border-radius: 10px;
   box-shadow: 0 3px 16px #38bdf857;
   padding: 0;
   margin: 0;
-  /* No white box, just the image; transparent logo recommended */
+  /* preserves logo aspect, never squashed or cropped */
 }
 
 /* Navigacija */
@@ -403,14 +400,15 @@ html,
   animation: magic-gradient 6s ease-in-out infinite;
   letter-spacing: -1px;
 }
-.showcase-grid {
+.showcase-grid.complex {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 44px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 46px;
+  align-items: stretch;
 }
-
 .showcase-item {
-  display: block;
+  display: flex;
+  flex-direction: column;
   background: rgba(29, 36, 53, 0.93);
   border-radius: 19px;
   overflow: hidden;
@@ -419,19 +417,36 @@ html,
   color: inherit;
   transition: box-shadow 0.18s, transform 0.18s;
   cursor: pointer;
-  min-height: 320px;
+  min-height: 470px;
   position: relative;
+  align-items: center;
+  justify-content: flex-start;
 }
-.showcase-item img {
+.showcase-image-wrap {
   width: 100%;
-  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 0 0 0;
+  min-height: 380px;
+}
+.showcase-img-phone {
+  width: 220px;
+  height: 440px;
   object-fit: cover;
-  transition: transform 0.22s;
-  border-bottom: 1.5px solid #38bdf820;
-  filter: brightness(0.98) saturate(1.07);
+  border-radius: 22px;
+  box-shadow: 0 6px 36px #0ea5e930, 0 1.5px 0px #fff4;
+  background: #181e2a;
+  border: 2px solid #222b;
+  transition: transform 0.24s, box-shadow 0.24s;
+}
+.showcase-item:hover .showcase-img-phone {
+  transform: scale(1.04) rotate(-1.5deg);
+  box-shadow: 0 12px 48px #38bdf89c, 0 2px 0px #fff6;
 }
 .showcase-info {
-  padding: 20px 22px 14px 22px;
+  padding: 22px 24px 16px 24px;
+  width: 100%;
 }
 .showcase-info h3 {
   font-size: 1.18rem;
@@ -441,12 +456,8 @@ html,
   letter-spacing: 1px;
 }
 .showcase-info p {
-  font-size: 1.01rem;
+  font-size: 1.03rem;
   color: inherit;
-}
-.showcase-item:hover img {
-  transform: scale(1.05) rotate(-1.5deg);
-  filter: brightness(1.08) saturate(1.22);
 }
 .showcase-hint {
   text-align: center;
@@ -571,7 +582,7 @@ html,
     align-items: center;
     gap: 34px;
   }
-  .showcase-grid {
+  .showcase-grid.complex {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -587,7 +598,7 @@ html,
   }
 }
 @media (max-width: 700px) {
-  .showcase-grid {
+  .showcase-grid.complex {
     grid-template-columns: 1fr;
   }
   .about {
@@ -617,6 +628,10 @@ html,
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+  }
+  .showcase-img-phone {
+    width: 140px;
+    height: 280px;
   }
 }
 
