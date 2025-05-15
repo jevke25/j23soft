@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaGithub,
   FaInstagram,
@@ -191,25 +191,30 @@ const text = {
   }
 };
 
+// "AnimatedMarketing" - NO flicker, always reserved height, gap from button, ultra smooth
 function AnimatedMarketing({ lang }: { lang: "sr" | "en" }) {
   const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setTimeout(() => setIdx((x) => (x + 1) % marketing.length), 3200);
+    return () => clearTimeout(t);
+  }, [idx]);
   return (
     <div className="marketing-anim-responsive">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={idx}
-          className="marketing-anim-item"
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -30, scale: 0.92 }}
-          transition={{ duration: 0.6, type: "spring" }}
-        >
-          <span className="marketing-icon">{marketing[idx].icon}</span>
-          <span>{marketing[idx][lang]}</span>
-        </motion.div>
-      </AnimatePresence>
-      {/* auto-advance */}
-      {setTimeout(() => setIdx((x) => (x + 1) % marketing.length), 3200) && null}
+      <div style={{ minHeight: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={idx}
+            className="marketing-anim-item"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, type: "tween", ease: "easeInOut" }}
+          >
+            <span className="marketing-icon">{marketing[idx].icon}</span>
+            <span>{marketing[idx][lang]}</span>
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
@@ -219,6 +224,16 @@ export default function App() {
   const [lang, setLang] = useState<"sr" | "en">("sr");
   const langIcon = lang === "sr" ? <FaGlobeAmericas /> : <FaGlobeEurope />;
   const themeIcon = dark ? <FaRegSun /> : <FaRegMoon />;
+
+  // Prevent scroll jank on mobile (fixes "secka" osećaj na iOS/Android)
+  useEffect(() => {
+    document.body.style.overscrollBehaviorY = "none";
+    document.body.style.touchAction = "manipulation";
+    return () => {
+      document.body.style.overscrollBehaviorY = "";
+      document.body.style.touchAction = "";
+    };
+  }, []);
 
   return (
     <div className={`main-bg${dark ? " dark" : ""}`}>
@@ -296,6 +311,7 @@ export default function App() {
           >
             {text[lang].heroBtn}
           </motion.a>
+          <div style={{ height: 18 }} />
           <AnimatedMarketing lang={lang} />
         </motion.section>
 
