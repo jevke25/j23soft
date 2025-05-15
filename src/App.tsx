@@ -40,12 +40,12 @@ const marketing = [
 
 const showcases = [
   {
-    title: "TrainerPro",
+    title: "Restart",
     image: "/works/trainerpro.png",
-    url: "https://trainerpro-j23soft.vercel.app",
+    url: "https://restart-alpha.vercel.app/",
     description: {
-      sr: "Platforma za trenere sa naprednim Gym Management sistemom.",
-      en: "Trainer platform with advanced Gym Management system."
+      sr: "Platforma za trenere sa naprednim Gym Management sistemom. Login za trenera: petar-petar, za klijenta klijent-klijent",
+      en: "Trainer platform with advanced Gym Management system.  Login for trainer: petar-petar, for client klijent-klijent"
     }
   },
   {
